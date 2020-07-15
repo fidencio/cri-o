@@ -119,9 +119,8 @@ func (r *runtimeVM) CreateContainer(c *Container, cgroupParent string) (err erro
 
 	defer func() {
 		if err != nil {
-			r.Lock()
-			delete(r.ctrs, c.ID())
-			r.Unlock()
+			logrus.WithError(err).Warnf("Cleaning up container %v", c.ID())
+			r.deleteContainer(c, true)
 		}
 	}()
 
@@ -538,7 +537,7 @@ func (r *runtimeVM) deleteContainer(c *Container, force bool) error {
 	r.Lock()
 	cInfo, ok := r.ctrs[c.ID()]
 	r.Unlock()
-	if !ok {
+	if !ok && !force {
 		return errors.New("Could not retrieve container information")
 	}
 
