@@ -10,11 +10,11 @@ import (
 
 	"github.com/containers/libpod/pkg/cgroups"
 	"github.com/containers/storage/pkg/pools"
+	kubecontainer "github.com/cri-o/cri-o/integration/kubelet/container"
 	"github.com/creack/pty"
 	"github.com/sirupsen/logrus"
 	"golang.org/x/sys/unix"
 	"k8s.io/client-go/tools/remotecommand"
-	kubecontainer "k8s.io/kubernetes/pkg/kubelet/container"
 )
 
 func kill(pid int) error {
