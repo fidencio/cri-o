@@ -18,6 +18,7 @@ import (
 	selinux "github.com/containers/libpod/pkg/selinux"
 	"github.com/containers/storage"
 	"github.com/containers/storage/pkg/idtools"
+	"github.com/cri-o/cri-o/integration/kubelet/types"
 	"github.com/cri-o/cri-o/internal/config/node"
 	"github.com/cri-o/cri-o/internal/lib"
 	libsandbox "github.com/cri-o/cri-o/internal/lib/sandbox"
@@ -36,7 +37,6 @@ import (
 	"golang.org/x/sys/unix"
 	pb "k8s.io/cri-api/pkg/apis/runtime/v1alpha2"
 	"k8s.io/kubernetes/pkg/kubelet/leaky"
-	"k8s.io/kubernetes/pkg/kubelet/types"
 )
 
 // DefaultUserNSSize is the default size for the user namespace created

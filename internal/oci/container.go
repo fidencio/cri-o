@@ -12,6 +12,7 @@ import (
 
 	"github.com/containers/libpod/pkg/cgroups"
 	"github.com/containers/storage/pkg/idtools"
+	"github.com/cri-o/cri-o/integration/kubelet/types"
 	json "github.com/json-iterator/go"
 	specs "github.com/opencontainers/runtime-spec/specs-go"
 	"github.com/pkg/errors"
@@ -19,7 +20,6 @@ import (
 	"golang.org/x/sys/unix"
 	"k8s.io/apimachinery/pkg/fields"
 	pb "k8s.io/cri-api/pkg/apis/runtime/v1alpha2"
-	"k8s.io/kubernetes/pkg/kubelet/types"
 )
 
 const defaultStopSignalInt = 15
