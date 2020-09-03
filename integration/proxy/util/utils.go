@@ -23,13 +23,13 @@ import (
 	"net"
 	"strconv"
 
+	helper "github.com/cri-o/cri-o/integration/apis/core/v1/helper"
 	utilsysctl "github.com/cri-o/cri-o/integration/util/sysctl"
 	v1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/types"
 	utilrand "k8s.io/apimachinery/pkg/util/rand"
 	"k8s.io/apimachinery/pkg/util/sets"
 	"k8s.io/client-go/tools/record"
-	helper "k8s.io/kubernetes/pkg/apis/core/v1/helper"
 	utilnet "k8s.io/utils/net"
 
 	"k8s.io/klog/v2"
