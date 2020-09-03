@@ -21,6 +21,7 @@ import (
 	"github.com/cri-o/cri-o/integration/kubelet/cri/streaming"
 	"github.com/cri-o/cri-o/integration/kubelet/dockershim/network/hostport"
 	iptablesproxy "github.com/cri-o/cri-o/integration/proxy/iptables"
+	utiliptables "github.com/cri-o/cri-o/integration/util/iptables"
 	"github.com/cri-o/cri-o/internal/lib"
 	"github.com/cri-o/cri-o/internal/lib/sandbox"
 	"github.com/cri-o/cri-o/internal/oci"
@@ -32,7 +33,6 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/sirupsen/logrus"
 	pb "k8s.io/cri-api/pkg/apis/runtime/v1alpha2"
-	utiliptables "k8s.io/kubernetes/pkg/util/iptables"
 	utilexec "k8s.io/utils/exec"
 )
 

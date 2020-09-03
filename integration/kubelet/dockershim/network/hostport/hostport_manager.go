@@ -30,10 +30,10 @@ import (
 
 	iptablesproxy "github.com/cri-o/cri-o/integration/proxy/iptables"
 	"github.com/cri-o/cri-o/integration/util/conntrack"
+	utiliptables "github.com/cri-o/cri-o/integration/util/iptables"
 	v1 "k8s.io/api/core/v1"
 	utilerrors "k8s.io/apimachinery/pkg/util/errors"
 	"k8s.io/klog/v2"
-	utiliptables "k8s.io/kubernetes/pkg/util/iptables"
 	"k8s.io/utils/exec"
 	utilnet "k8s.io/utils/net"
 )

@@ -31,8 +31,8 @@ import (
 	"k8s.io/klog/v2"
 
 	iptablesproxy "github.com/cri-o/cri-o/integration/proxy/iptables"
+	utiliptables "github.com/cri-o/cri-o/integration/util/iptables"
 	v1 "k8s.io/api/core/v1"
-	utiliptables "k8s.io/kubernetes/pkg/util/iptables"
 	utilnet "k8s.io/utils/net"
 )
 
