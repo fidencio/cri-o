@@ -21,10 +21,10 @@ import (
 
 	"github.com/cri-o/cri-o/integration/proxy"
 	"github.com/cri-o/cri-o/integration/proxy/config"
+	utilproxy "github.com/cri-o/cri-o/integration/proxy/util"
 
 	v1 "k8s.io/api/core/v1"
 	"k8s.io/klog/v2"
-	utilproxy "k8s.io/kubernetes/pkg/proxy/util"
 
 	utilnet "k8s.io/utils/net"
 
