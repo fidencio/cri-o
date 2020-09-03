@@ -6,7 +6,7 @@ import (
 	"strings"
 	"unicode"
 
-	"k8s.io/kubernetes/pkg/kubelet/cm/cpuset"
+	"github.com/cri-o/cri-o/integration/kubelet/cm/cpuset"
 )
 
 func isASCII(s string) bool {
