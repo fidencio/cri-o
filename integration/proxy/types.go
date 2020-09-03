@@ -20,9 +20,9 @@ import (
 	"fmt"
 	"net"
 
+	"github.com/cri-o/cri-o/integration/proxy/config"
 	v1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/types"
-	"k8s.io/kubernetes/pkg/proxy/config"
 )
 
 // Provider is the interface provided by proxier implementations.
