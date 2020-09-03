@@ -10,6 +10,7 @@ import (
 	"time"
 
 	cstorage "github.com/containers/storage"
+	"github.com/cri-o/cri-o/integration/kubelet/cri/streaming"
 	"github.com/cri-o/cri-o/integration/kubelet/dockershim/network/hostport"
 	"github.com/cri-o/cri-o/internal/lib/sandbox"
 	"github.com/cri-o/cri-o/internal/oci"
@@ -27,7 +28,6 @@ import (
 	. "github.com/onsi/gomega"
 	"github.com/sirupsen/logrus"
 	pb "k8s.io/cri-api/pkg/apis/runtime/v1alpha2"
-	"k8s.io/kubernetes/pkg/kubelet/cri/streaming"
 )
 
 // TestServer runs the created specs
