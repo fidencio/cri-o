@@ -360,3 +360,30 @@ func Sync(path string) error {
 	}
 	return nil
 }
+
+func BuildShimV2Path(path string) string {
+	// shim v2 expects the runtime name to be in the following version:
+	//        ($dir.)?$prefix.$name.$version
+	//        -------- ------ ----- ---------
+	//              |     |     |      |
+	//              v     |     |      |
+	//      "/usr/local/bin"    |      |
+	//        (optional)  |     |      |
+	//                    v     |      |
+	//             "containerd.shim."  |
+	//                          |      |
+	//                          v      |
+	//                     "kata-qemu" |
+	//                                 v
+	//                                "v2"
+	const expectedPrefix = "containerd-shim-"
+	const expectedVersion = "-v2"
+
+	const binaryPrefix = "containerd.shim"
+	const binaryVersion = "v2"
+
+	runtimeDir := filepath.Dir(path)
+	runtimeName := strings.SplitAfter(strings.Split(filepath.Base(path), expectedVersion)[0], expectedPrefix)[1]
+
+	return filepath.Join(runtimeDir, fmt.Sprintf("%s.%s.%s", binaryPrefix, runtimeName, binaryVersion))
+}

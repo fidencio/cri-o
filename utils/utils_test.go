@@ -400,6 +400,28 @@ var _ = t.Describe("Utils", func() {
 			Expect(newaddgids).To(Equal(addgids))
 		})
 	})
+
+	t.Describe("BuildShimV2Path", func() {
+		It("Simple binary name (containerd-shim-kata-v2)", func() {
+			shimPath := utils.BuildShimV2Path("containerd-shim-kata-v2")
+			Expect(shimPath).To(Equal("containers.shim.kata.v2"))
+		})
+
+		It("Full binary path with a simple binary name (/usr/bin/containerd-shim-kata-v2)", func() {
+			shimPath := utils.BuildShimV2Path("/usr/bin/containerd-shim-kata-v2")
+			Expect(shimPath).To(Equal("/usr/bin/containers.shim.kata.v2"))
+		})
+
+		It("Composed binary name (containerd-shim-kata-qemu-with-dax-support-v2)", func() {
+			shimPath := utils.BuildShimV2Path("containerd-shim-kata-qemu-with-dax-support-v2")
+			Expect(shimPath).To(Equal("containers.shim.kata-qemu-with-dax-support.v2"))
+		})
+
+		It("Full binary path with a composed binary name (/usr/bin/containerd-shim-kata-v2)", func() {
+			shimPath := utils.BuildShimV2Path("/usr/bin/containerd-shim-kata-qemu-with-dax-support-v2")
+			Expect(shimPath).To(Equal("/usr/bin/containers.shim.kata-qemu-with-dax-support.v2"))
+		})
+	})
 })
 
 func createEtcFiles() string {
