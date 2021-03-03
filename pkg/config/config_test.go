@@ -131,6 +131,33 @@ var _ = t.Describe("Config", func() {
 			// Then
 			Expect(err).NotTo(BeNil())
 		})
+
+		It("should succeed when using RuntimeTypeVM and runtime_path follows the containerd pattern", func() {
+			// Given
+			sut.Runtimes["kata"] = &config.RuntimeHandler{
+				RuntimePath: "containerd-shim-kata-qemu-v2", RuntimeType: config.RuntimeTypeVM,
+			}
+
+			// When
+			err := sut.Validate(true)
+
+			// Then
+			Expect(err).To(BeNil())
+		})
+
+		It("should fail when using RuntimeTypeVM and runtime_path does follow the containerd pattern", func() {
+			// Given
+			sut.Runtimes["kata"] = &config.RuntimeHandler{
+				RuntimePath: "kata-runtime", RuntimeType: config.RuntimeTypeVM,
+			}
+
+			// When
+			err := sut.Validate(true)
+
+			// Then
+			Expect(err).NotTo(BeNil())
+		})
+
 	})
 
 	t.Describe("ValidateAPIConfig", func() {

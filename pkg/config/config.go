@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"regexp"
 	"strings"
 
 	"github.com/BurntSushi/toml"
@@ -39,14 +40,15 @@ import (
 
 // Defaults if none are specified
 const (
-	defaultRuntime        = "runc"
-	DefaultRuntimeType    = "oci"
-	DefaultRuntimeRoot    = "/run/runc"
-	defaultGRPCMaxMsgSize = 16 * 1024 * 1024
-	OCIBufSize            = 8192
-	RuntimeTypeVM         = "vm"
-	defaultCtrStopTimeout = 30 // seconds
-	defaultNamespacesDir  = "/var/run"
+	defaultRuntime             = "runc"
+	DefaultRuntimeType         = "oci"
+	DefaultRuntimeRoot         = "/run/runc"
+	defaultGRPCMaxMsgSize      = 16 * 1024 * 1024
+	OCIBufSize                 = 8192
+	RuntimeTypeVM              = "vm"
+	defaultCtrStopTimeout      = 30 // seconds
+	defaultNamespacesDir       = "/var/run"
+	RuntimeTypeVMBinaryPattern = "containerd-shim-([a-zA-Z0-9\\-\\+])+-v2"
 )
 
 // Config represents the entire set of configuration values that can be set for
@@ -1051,6 +1053,17 @@ func (r *RuntimeHandler) ValidateRuntimePath(name string) error {
 		return fmt.Errorf("invalid runtime_path for runtime '%s': %q",
 			name, err)
 	}
+
+	if r.RuntimeType == RuntimeTypeVM {
+		binaryName := filepath.Base(r.RuntimePath)
+
+		matched, _ := regexp.MatchString(RuntimeTypeVMBinaryPattern, binaryName)
+		if !matched {
+			return fmt.Errorf("Invalid runtime_path for runtime '%s': containerd binary naming pattern is not followed",
+				name)
+		}
+	}
+
 	logrus.Debugf(
 		"Found valid runtime %q for runtime_path %q", name, r.RuntimePath,
 	)
